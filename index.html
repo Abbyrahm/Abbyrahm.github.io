@@ -8,13 +8,17 @@
 </head>
 <body>
   <nav class="navbar">
-    <ul>
-      <li><a href="#" onclick="showSection('summary')">Summary</a></li>
-      <li><a href="#" onclick="showSection('education')">Education</a></li>
-      <li><a href="#" onclick="showSection('experience')">Experience</a></li>
-      <li><a href="#" onclick="showSection('projects')">Projects</a></li>
-      <li><a href="#" onclick="showSection('skills')">Skills</a></li>
-    </ul>
+    <div class="nav-container">
+      <div class="nav-logo">Resume</div>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" onclick="showSection('summary')">Summary</a></li>
+        <li><a href="#" onclick="showSection('education')">Education</a></li>
+        <li><a href="#" onclick="showSection('experience')">Experience</a></li>
+        <li><a href="#" onclick="showSection('projects')">Projects</a></li>
+        <li><a href="#" onclick="showSection('skills')">Skills</a></li>
+      </ul>
+    </div>
   </nav>
   <div class="container">
     <header>
@@ -134,20 +138,26 @@
       </ul>
     </section>
   </div>
+   <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('.resume-section');
+      sections.forEach(section => section.classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+
+      const links = document.querySelectorAll('.nav-links a');
+      links.forEach(link => link.classList.remove('active'));
+      const activeLink = document.querySelector(`.nav-links a[onclick*="${id}"]`);
+      if (activeLink) activeLink.classList.add('active');
+
+      // Auto close menu on mobile after clicking
+      document.getElementById("navLinks").classList.remove("open");
+    }
+
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("open");
+    }
+
+    window.onload = () => showSection('summary');
+  </script>
 </body>
-<script>
-  function showSection(id) {
-    const sections = document.querySelectorAll('.resume-section');
-    sections.forEach(section => section.classList.add('hidden'));
-    document.getElementById(id).classList.remove('hidden');
-
-    // Highlight active nav link
-    const links = document.querySelectorAll('.navbar a');
-    links.forEach(link => link.classList.remove('active'));
-    const activeLink = document.querySelector(`.navbar a[onclick*="${id}"]`);
-    if (activeLink) activeLink.classList.add('active');
-  }
-
-  window.onload = () => showSection('summary');
-</script>
 </html>
