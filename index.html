@@ -9,10 +9,10 @@
 <body>
   <nav class="navbar">
     <ul>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
+      <li><a href="#" onclick="showSection('education')">Education</a></li>
+      <li><a href="#" onclick="showSection('experience')">Experience</a></li>
+      <li><a href="#" onclick="showSection('projects')">Projects</a></li>
+      <li><a href="#" onclick="showSection('skills')">Skills</a></li>
     </ul>
   </nav>
   <div class="container">
@@ -113,4 +113,16 @@
     </section>
   </div>
 </body>
+  <script>
+    function showSection(id) {
+      const sections = document.querySelectorAll('.resume-section');
+      sections.forEach(section => {
+        section.classList.add('hidden');
+      });
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    // Optional: Show "Education" by default on page load
+    window.onload = () => showSection('education');
+  </script>
 </html>
