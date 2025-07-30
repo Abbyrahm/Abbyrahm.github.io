@@ -122,15 +122,19 @@
     </section>
   </div>
 </body>
-  <script>
-    function showSection(id) {
-      const sections = document.querySelectorAll('.resume-section');
-      sections.forEach(section => {
-        section.classList.add('hidden');
-      });
-      document.getElementById(id).classList.remove('hidden');
-    }
+<script>
+  function showSection(id) {
+    const sections = document.querySelectorAll('.resume-section');
+    sections.forEach(section => section.classList.add('hidden'));
+    document.getElementById(id).classList.remove('hidden');
 
-    window.onload = () => showSection('summary');
-  </script>
+    // Highlight active nav link
+    const links = document.querySelectorAll('.navbar a');
+    links.forEach(link => link.classList.remove('active'));
+    const activeLink = document.querySelector(`.navbar a[onclick*="${id}"]`);
+    if (activeLink) activeLink.classList.add('active');
+  }
+
+  window.onload = () => showSection('summary');
+</script>
 </html>
